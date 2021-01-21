@@ -28,10 +28,10 @@ public class PruebaMatrizDispersa {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MatrizDispersa matrizDispersa = new MatrizDispersa(50, 10);
+        MatrizDispersa matrizDispersa = new MatrizDispersa(50, 100);
 
         matrizDispersa.agregar(23, 5, 57);
-        matrizDispersa.agregar(0, 7, 8);
+        matrizDispersa.agregar(0, 79, 8);
 
         boolean ans = matrizDispersa.agregar(1, 3, 42);
 
