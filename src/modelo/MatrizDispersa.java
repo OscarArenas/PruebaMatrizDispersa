@@ -25,8 +25,8 @@ public class MatrizDispersa {
     // Campos
     private int[][] tripletas;
     private int n;
-    private final int filas;
-    private final int columnas;
+    public final int filas;
+    public final int columnas;
 
     // Métodos
     public MatrizDispersa(int filas, int columnas) {
@@ -72,8 +72,7 @@ public class MatrizDispersa {
     }
 
     public boolean eliminar(int fila, int columna) {
-        if (fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
-            boolean borroTripleta = false;
+        if (n > 0 && fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
             int i = 0;
             while (i < n && tripletas[i][0] < fila) {
                 i++;
@@ -89,12 +88,12 @@ public class MatrizDispersa {
                     tripletas[j][1] = tripletas[j + 1][1];
                     tripletas[j][2] = tripletas[j + 1][2];
                 }
-                borroTripleta = true;
+
                 if (tripletas.length / 4 == n) {
                     cambiarCapacidad(tripletas.length / 2);
                 }
+                return true;
             }
-            return borroTripleta;
         }
         return false;
     }
@@ -103,7 +102,7 @@ public class MatrizDispersa {
         if (nc > 0 && nc >= n) {
             int[][] auxiliar = new int[nc][3];
 
-            for (int i = 0; i < tripletas.length; i++) {
+            for (int i = 0; i < n; i++) {
                 auxiliar[i] = tripletas[i];
             }
             tripletas = auxiliar;
