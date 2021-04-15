@@ -73,7 +73,6 @@ public class MatrizDispersa {
 
     public boolean eliminar(int fila, int columna) {
         if (fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
-            boolean borroTripleta = false;
             int i = 0;
             while (i < n && tripletas[i][0] < fila) {
                 i++;
@@ -82,19 +81,19 @@ public class MatrizDispersa {
                 i++;
             }
             if (i < n && tripletas[i][0] == fila && tripletas[i][1] == columna) {
-                // Eliminar fila y decrementar cantidadTripletas
+                // Eliminar fila y decrementar la cantidad tripletas
                 n--;
                 for (int j = i; j < n; j++) {
                     tripletas[j][0] = tripletas[j + 1][0];
                     tripletas[j][1] = tripletas[j + 1][1];
                     tripletas[j][2] = tripletas[j + 1][2];
                 }
-                borroTripleta = true;
+
                 if (tripletas.length / 4 == n) {
                     cambiarCapacidad(tripletas.length / 2);
                 }
+                return true;
             }
-            return borroTripleta;
         }
         return false;
     }
