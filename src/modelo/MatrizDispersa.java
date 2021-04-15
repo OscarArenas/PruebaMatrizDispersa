@@ -103,7 +103,7 @@ public class MatrizDispersa {
         if (nc > 0 && nc >= n) {
             int[][] auxiliar = new int[nc][3];
 
-            for (int i = 0; i < tripletas.length; i++) {
+            for (int i = 0; i < n; i++) {
                 auxiliar[i] = tripletas[i];
             }
             tripletas = auxiliar;
