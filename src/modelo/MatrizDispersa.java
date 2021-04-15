@@ -72,7 +72,7 @@ public class MatrizDispersa {
     }
 
     public boolean eliminar(int fila, int columna) {
-        if (fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
+        if (n > 0 && fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
             int i = 0;
             while (i < n && tripletas[i][0] < fila) {
                 i++;
