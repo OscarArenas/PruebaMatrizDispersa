@@ -16,6 +16,8 @@
  */
 package modelo;
 
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author Oscar Arenas
@@ -38,9 +40,6 @@ public class MatrizDispersa {
 
     public boolean agregar(int fila, int columna, int valor) {
         if (valor != 0 && fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
-            if (tripletas.length == n) {
-                cambiarCapacidad(2 * n);
-            }
             int i = 0;
             // Buscamos el punto de inserción de la tripleta por fila
             while (i < n && tripletas[i][0] < fila) {
@@ -53,6 +52,10 @@ public class MatrizDispersa {
 
             if (i < n && tripletas[i][0] == fila && tripletas[i][1] == columna) {
                 return false; // No se permiten dos valores en la misma posicion
+            }
+
+            if (tripletas.length == n) {
+                cambiarCapacidad(2 * n);
             }
 
             for (int j = n; j > i; j--) {
@@ -71,33 +74,6 @@ public class MatrizDispersa {
         return false;
     }
 
-    public boolean eliminar(int fila, int columna) {
-        if (n > 0 && fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
-            int i = 0;
-            while (i < n && tripletas[i][0] < fila) {
-                i++;
-            }
-            while (i < n && tripletas[i][0] == fila && tripletas[i][1] < columna) {
-                i++;
-            }
-            if (i < n && tripletas[i][0] == fila && tripletas[i][1] == columna) {
-                // Eliminar fila y decrementar cantidadTripletas
-                n--;
-                for (int j = i; j < n; j++) {
-                    tripletas[j][0] = tripletas[j + 1][0];
-                    tripletas[j][1] = tripletas[j + 1][1];
-                    tripletas[j][2] = tripletas[j + 1][2];
-                }
-
-                if (tripletas.length / 4 == n) {
-                    cambiarCapacidad(tripletas.length / 2);
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void cambiarCapacidad(int nc) {
         if (nc > 0 && nc >= n) {
             int[][] auxiliar = new int[nc][3];
@@ -107,6 +83,32 @@ public class MatrizDispersa {
             }
             tripletas = auxiliar;
         }
+    }
+
+    public boolean eliminar(int fila, int columna) {
+        if (n > 0 && fila >= 0 && fila < filas && columna >= 0 && columna < columnas) {
+            int i = 0;
+            while (i < n && fila > tripletas[i][0]) {
+                i++;
+            }
+            while (i < n && fila == tripletas[i][0] && columna > tripletas[i][1]) {
+                i++;
+            }
+            if (i < n && fila == tripletas[i][0] && columna == tripletas[i][1]) {
+                n--;
+                while (i < n) {
+                    tripletas[i][0] = tripletas[i + 1][0];
+                    tripletas[i][1] = tripletas[i + 1][1];
+                    tripletas[i][2] = tripletas[i + 1][2];
+                    i++;
+                }
+                if (tripletas.length / 4 == n) {
+                    cambiarCapacidad(tripletas.length / 2);
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

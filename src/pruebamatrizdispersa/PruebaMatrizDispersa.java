@@ -16,6 +16,7 @@
  */
 package pruebamatrizdispersa;
 
+import java.util.NoSuchElementException;
 import modelo.MatrizDispersa;
 
 /**
@@ -32,6 +33,7 @@ public class PruebaMatrizDispersa {
 
         matrizDispersa.agregar(23, 5, 57);
         matrizDispersa.agregar(0, 79, 8);
+        matrizDispersa.agregar(43, 39, -98);
 
         boolean ans = matrizDispersa.agregar(1, 3, 42);
 
@@ -42,5 +44,11 @@ public class PruebaMatrizDispersa {
         }
 
         System.out.println(matrizDispersa);
+
+        matrizDispersa.eliminar(43, 39);
+
+        System.out.println("Después de borrar:");
+        System.out.println(matrizDispersa);
+
     }
 }
