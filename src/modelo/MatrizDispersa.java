@@ -81,7 +81,7 @@ public class MatrizDispersa {
                 i++;
             }
             if (i < n && tripletas[i][0] == fila && tripletas[i][1] == columna) {
-                // Eliminar fila y decrementar cantidadTripletas
+                // Eliminar fila y decrementar la cantidad tripletas
                 n--;
                 for (int j = i; j < n; j++) {
                     tripletas[j][0] = tripletas[j + 1][0];
