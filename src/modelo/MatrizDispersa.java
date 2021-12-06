@@ -16,8 +16,6 @@
  */
 package modelo;
 
-import java.util.NoSuchElementException;
-
 /**
  *
  * @author Oscar Arenas
@@ -122,7 +120,7 @@ public class MatrizDispersa {
             // Buscamos el valor de la matriz con más caracteres
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < 3; j++) {
-                    String numero = tripletas[i][j] + "";
+                    String numero = realAString(tripletas[i][j]);
                     if (numero.length() > mayorAncho[j]) {
                         mayorAncho[j] = numero.length();
                     }
@@ -142,17 +140,31 @@ public class MatrizDispersa {
             // Formamos la cadena con los valores de la matriz por filas
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < 3; j++) {
-                    String numero = tripletas[i][j] + "";
+                    String numero = realAString(tripletas[i][j]);
 
                     int delta = mayorAncho[j] - numero.length();
                     for (int k = 0; k < delta; k++) {
                         cadena += " ";
                     }
-                    cadena += tripletas[i][j];
+                    cadena += numero;
                 }
                 cadena += "\n";
             }
         }
         return cadena;
+    }
+
+    private static String realAString(double real) {
+        int entero = (int) real;
+        String cadena = real + "";
+
+        if (real == entero) {
+            cadena = entero + "";
+        }
+        return cadena;
+    }
+
+    public int cantidadTripletas() {
+        return n;
     }
 }

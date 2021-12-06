@@ -16,7 +16,15 @@
  */
 package pruebamatrizdispersa;
 
-import java.util.NoSuchElementException;
+import edu.oharenas.aleatorio.Aleatorio;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.MatrizDispersa;
 
 /**
@@ -46,9 +54,9 @@ public class PruebaMatrizDispersa {
         System.out.println(matrizDispersa);
 
         matrizDispersa.eliminar(43, 39);
-
         System.out.println("Después de borrar:");
         System.out.println(matrizDispersa);
 
+        System.out.println(" - Tripletas: " + matrizDispersa.cantidadTripletas());
     }
 }
